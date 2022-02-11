@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {BACKEND_API_KEY, BACKEND_URL} from 'react-native-dotenv'
+import { BACKEND_API_KEY, BACKEND_URL } from 'react-native-dotenv'
 
 const loginUser = (email: string, password: string) => {
     return axios.post(
@@ -11,8 +11,8 @@ const loginUser = (email: string, password: string) => {
         {
             headers: {
                 'x-api-key': BACKEND_API_KEY
-        }
-    })
+            }
+        })
 }
 
 export default loginUser
