@@ -12,7 +12,8 @@ const globalStyles = StyleSheet.create({
         borderStyle: "solid",
         borderWidth: 1,
         padding: 8,
-        width: "100%"
+        width: "100%",
+        paddingLeft: 40
     }
 })
 
