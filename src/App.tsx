@@ -9,23 +9,35 @@
  */
 
 import React, { useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import { NativeRouter, Routes, Route, Link } from 'react-router-native';
-import { Login, Onboarding, Home, ResetPassword } from './screens';
+import { NativeRouter, Routes, Route } from 'react-router-native';
+import { LogBox } from 'react-native';
+import { Login, Onboarding, Home, ResetPassword, Profile, Clients, Employees, Jobs, Purchases, Payments, Notes, Client, Employee, Job, Note } from './screens';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+  LogBox.ignoreAllLogs();//Ignore all log notifications
+
   return (
-    <SafeAreaView>
-      <NativeRouter>
-        <Routes>
-          <Route path='/' element={<Onboarding />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='reset-password' element={<ResetPassword />} />
-          <Route path='/home' element={<Home />} />
-        </Routes>
-      </NativeRouter>
-    </SafeAreaView>
+    <NativeRouter>
+      <Routes>
+        <Route path='/' element={<Onboarding />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='reset-password' element={<ResetPassword />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/clients' element={<Clients />} />
+        <Route path='/employees' element={<Employees />} />
+        <Route path='/jobs' element={<Jobs />} />
+        <Route path='/clients/:clientId/purchases' element={<Purchases />} />
+        <Route path='/clients/:clientId/payments' element={<Payments />} />
+        <Route path='/clients/:clientId/notes' element={<Notes />} />
+        <Route path='/clients/:clientId' element={<Client />} />
+        <Route path='/employees/:employeeId' element={<Employee />} />
+        <Route path='/jobs/:jobId' element={<Job />} />
+        <Route path='/clients/:clientId/notes/:noteId' element={<Note />} />
+      </Routes>
+    </NativeRouter>
   );
 };
 

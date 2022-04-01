@@ -1,11 +1,11 @@
 import React from "react"
-import { View } from "react-native"
+import { Screen } from "../components"
 
 const ResetPassword = () => {
     return (
-        <View>
+        <Screen>
 
-        </View>
+        </Screen>
     )
 }
 

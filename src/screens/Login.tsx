@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TextInput, Image, Pressable, Alert } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image, Pressable, KeyboardAvoidingView, Platform } from "react-native";
 import loginUser from "../apis/loginUser";
-import { globalStyles, colorScheme } from '../constants'
+import { globalStyles } from '../constants'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Navigate, useNavigate } from "react-router-native";
+import { useNavigate } from "react-router-native";
 import Logo from '../assets/images/tooele-crc.png'
 import EmailIcon from '../assets/icons/mail.svg'
 import KeyIcon from '../assets/icons/key.svg'
-import EyeOpen from '../assets/icons/eye-open.svg'
-import EyeClosed from '../assets/icons/eye-closed.svg'
-import { PrimaryButton, Screen } from "../components";
+import { PrimaryButton, Screen, Wrapper, LabeledInput, SecureInput } from "../components";
 
 const LogoURI = Image.resolveAssetSource(Logo).uri;
 
 const styles = StyleSheet.create({
-  screen: {
-    marginHorizontal: 40
+  content: {
+    justifyContent: 'space-evenly',
+    height: '100%'
   },
   form: {
-    justifyContent: "space-between",
-    flex: 0.6
+    justifyContent: 'space-between',
+    height: '18%'
   },
   logo: {
-    width: 300,
-    height: 300,
+    maxWidth: '100%',
+    width: '100%%',
+    height: '45%',
+    alignSelf: 'center',
+    aspectRatio: 1
   },
   resetPassword: {
     color: 'blue'
   },
-  inputIcon: {
-    position: 'absolute',
-    top: 22.5,
-    left: 10
-  },
-  eyeIcon: {
-    position: 'absolute',
-    right: 10,
-    bottom: 5
+  info: {
   }
 })
 
@@ -44,7 +38,6 @@ const Login = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const handleLogin = async (email: string, password: string) => {
     try {
@@ -66,57 +59,40 @@ const Login = () => {
     }
   }, [isLoggedIn])
   return (
-    <Screen style={styles.screen}>
-      <Image
-        source={{
-          uri: LogoURI
-        }}
-        style={styles.logo}
-      />
-      <View style={styles.form}>
-        <View>
-          <Text>Email</Text>
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="email"
-            autoCorrect={false}
-            keyboardType="email-address"
+    <Screen>
+      <View style={styles.content}>
+        <Image
+          source={{
+            uri: LogoURI
+          }}
+          style={styles.logo}
+        />
+        <View style={styles.form}>
+          <LabeledInput
+            label='Email'
             value={email}
-            style={globalStyles.textInput}
-            onChangeText={newEmail => setEmail(newEmail)}>
-          </TextInput>
-          <EmailIcon fill="black" style={styles.inputIcon} width={24} height={24} />
-        </View>
-        <View>
-          <Text>Password</Text>
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="password"
+            onChangeText={newEmail => setEmail(newEmail)}
+            autoCapitalize='none'
+            autoComplete='email'
             autoCorrect={false}
+            keyboardType='email-address'
+            icon={<EmailIcon fill="black" width={24} height={24} />}
+          />
+          <SecureInput
+            label='Password'
             value={password}
-            secureTextEntry={!showPassword}
-            style={globalStyles.textInput}
-            onChangeText={newPassword => setPassword(newPassword)}>
-          </TextInput>
-          <KeyIcon fill="black" style={styles.inputIcon} width={24} height={24} />
-          <Pressable onPress={() => setShowPassword(!showPassword)}>
-            {
-              showPassword ?
-                <EyeOpen fill="black" style={styles.eyeIcon} width={24} height={24} /> :
-                <EyeClosed fill="black" style={styles.eyeIcon} width={24} height={24} />
-            }
+            onChangeText={newPassword => setPassword(newPassword)}
+            icon={<KeyIcon fill="black" width={24} height={24} />}
+          />
+          <Pressable onPress={() => navigate('/reset-password')}>
+            <Text style={styles.resetPassword}>Forgot password?</Text>
           </Pressable>
         </View>
-        <Pressable onPress={() => navigate('/reset-password')}>
-          <Text style={styles.resetPassword}>Forgot password?</Text>
-        </Pressable>
-        <Text>
+        <Text style={styles.info}>
           An account should have been created for you.
           If you don’t have an account, please speak to your supervisor to create one.
         </Text>
-        <View>
-          <PrimaryButton title='Login' onPress={() => Alert.alert('LOGIN')} />
-        </View>
+        <PrimaryButton title='Login' onPress={() => navigate('/home')} />
       </View>
     </Screen>
   )
