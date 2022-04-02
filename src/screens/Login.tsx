@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-native";
 import Logo from '../assets/images/tooele-crc.png'
 import EmailIcon from '../assets/icons/mail.svg'
 import KeyIcon from '../assets/icons/key.svg'
-import { PrimaryButton, Screen, Wrapper, LabeledInput, SecureInput } from "../components";
+import { PrimaryButton, Screen, LabeledInput, SecureInput } from "../components";
 
 const LogoURI = Image.resolveAssetSource(Logo).uri;
 
@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     maxWidth: '100%',
-    width: '100%%',
-    height: '45%',
+    height: '32%',
     alignSelf: 'center',
     aspectRatio: 1
   },
@@ -77,6 +76,7 @@ const Login = () => {
             autoCorrect={false}
             keyboardType='email-address'
             icon={<EmailIcon fill="black" width={24} height={24} />}
+            secureTextEntry={false}
           />
           <SecureInput
             label='Password'

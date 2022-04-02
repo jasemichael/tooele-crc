@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native"
 import { useNavigate } from "react-router-native"
 import PersonIcon from '../../assets/icons/person.svg'
 import { Employee } from "../../types"
+import ProfileImage from "../ProfileImage"
 
 const styles = StyleSheet.create({
   employeeCard: {
@@ -26,7 +27,7 @@ const EmployeeCard: React.FC<IProps> = ({ employee }) => {
   return (
     <Pressable onPress={() => navigate(`/employees/${employee._id}`)}>
       <View style={styles.employeeCard}>
-        <PersonIcon fill="grey" />
+        <ProfileImage />
         <Text>{employee.first_name} {employee.last_name}</Text>
         <Text>{employee.position}</Text>
       </View>

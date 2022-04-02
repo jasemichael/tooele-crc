@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { ScrollView, StyleSheet, View } from "react-native"
-import { Carousel, ClientCard, EmployeeCard, JobCard, Screen, SectionHeader, Wrapper } from "../components"
+import { Carousel, ClientCard, EmployeeCard, JobCard, Screen, SectionHeader } from "../components"
 
 const styles = StyleSheet.create({
   content: {
-    height: '120%'
+    paddingBottom: 100
   },
   section: {
     marginBottom: 20

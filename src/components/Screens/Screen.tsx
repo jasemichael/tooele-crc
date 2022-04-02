@@ -1,23 +1,21 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView } from "react-native"
-import { screenHeight } from '../../constants'
+import { StyleSheet, SafeAreaView, View } from "react-native"
 import Navigation from '../Navigation'
 import Wrapper from '../Wrapper'
 
 const styles = StyleSheet.create({
   screen: {
-    height: screenHeight,
     backgroundColor: 'white',
   }
 })
 
 interface IProps {
-  activeScreen?: 'home' | 'profile'
+  activeScreen?: 'home' | 'profile',
 }
 
 const Screen: React.FC<IProps> = ({ children, activeScreen }) => {
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={[styles.screen, StyleSheet.absoluteFill]}>
       <Wrapper>
         {children}
       </Wrapper>

@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { StyleSheet, View, Pressable, Animated, Modal } from 'react-native'
-import { Link } from 'react-router-native'
+import { StyleSheet, View, Pressable, Animated } from 'react-native'
+import { Link, useNavigate } from 'react-router-native'
 import PlusIcon from '../assets/icons/plus.svg'
 import HomeIcon from '../assets/icons/home.svg'
 import ProfileIcon from '../assets/icons/profile.svg'
 import { AddCard } from './Cards'
-import { screenWidth } from '../constants'
-import { CreateUpdateClient, CreateUpdateEmployee, CreateUpdateJob } from '../components'
+import { screenHeight } from '../constants'
 
 const styles = StyleSheet.create({
   navigation: {
@@ -42,9 +41,7 @@ const styles = StyleSheet.create({
   },
   addCard: {
     position: 'absolute',
-  },
-  addEmployee: {
-    alignSelf: 'center',
+    alignSelf: 'center'
   },
   link: {
     alignSelf: 'center',
@@ -57,20 +54,17 @@ interface IProps {
 }
 
 const Navigation: React.FC<IProps> = ({ activeScreen }) => {
-  const middle = screenWidth / 2
+  const navigate = useNavigate()
   // hooks
   const [addIsActive, setAddIsActive] = useState(false)
-  const [showAddClient, setShowAddClient] = useState(false)
-  const [showAddEmployee, setShowAddEmployee] = useState(false)
-  const [showAddJob, setShowAddJob] = useState(false)
   // Animation variables
   const rotateZ = useRef(new Animated.Value(0)).current
   const opacity = useRef(new Animated.Value(0.5)).current
-  const clientX = useRef(new Animated.Value(middle)).current
-  const clientY = useRef(new Animated.Value(700)).current
-  const employeeY = useRef(new Animated.Value(700)).current
-  const jobX = useRef(new Animated.Value(middle)).current
-  const jobY = useRef(new Animated.Value(700)).current
+  const clientX = useRef(new Animated.Value(0)).current
+  const clientY = useRef(new Animated.Value(screenHeight)).current
+  const employeeY = useRef(new Animated.Value(screenHeight)).current
+  const jobX = useRef(new Animated.Value(0)).current
+  const jobY = useRef(new Animated.Value(screenHeight)).current
 
   const rotateAnimation = (val: number) => Animated.spring(rotateZ,
     {
@@ -110,14 +104,14 @@ const Navigation: React.FC<IProps> = ({ activeScreen }) => {
   useEffect(() => {
     if (addIsActive) {
       rotateAnimation(135)
-      clientCardAnimation(20, 700)
-      employeeCardAnimation(640)
-      jobCardAnimation(240, 700)
+      clientCardAnimation(-100, screenHeight - 150)
+      employeeCardAnimation(screenHeight - 210)
+      jobCardAnimation(100, screenHeight - 150)
     } else {
       rotateAnimation(0)
-      clientCardAnimation(middle, 900)
-      employeeCardAnimation(900)
-      jobCardAnimation(middle, 900)
+      clientCardAnimation(0, screenHeight)
+      employeeCardAnimation(screenHeight)
+      jobCardAnimation(0, screenHeight)
     }
   }, [addIsActive])
 
@@ -129,28 +123,14 @@ const Navigation: React.FC<IProps> = ({ activeScreen }) => {
 
   const overlay = (
     <View style={styles.overlay}>
-      <Animated.View style={{ transform: [{ translateX: clientX }, { translateY: clientY }] }}><AddCard title="Client" style={styles.addCard} onPress={() => setShowAddClient(true)} /></Animated.View>
-      <Animated.View style={{ transform: [{ translateY: employeeY }] }}><AddCard title="Employee" style={[styles.addCard, styles.addEmployee]} onPress={() => setShowAddEmployee(true)} /></Animated.View>
-      <Animated.View style={{ transform: [{ translateX: jobX }, { translateY: jobY }] }}><AddCard title="Job" style={styles.addCard} onPress={() => setShowAddJob(true)} /></Animated.View>
+      <Animated.View style={{ transform: [{ translateX: clientX }, { translateY: clientY }] }}><AddCard title="Client" style={styles.addCard} onPress={() => navigate('/clients/create')} /></Animated.View>
+      <Animated.View style={{ transform: [{ translateY: employeeY }] }}><AddCard title="Employee" style={styles.addCard} onPress={() => navigate('/employees/create')} /></Animated.View>
+      <Animated.View style={{ transform: [{ translateX: jobX }, { translateY: jobY }] }}><AddCard title="Job" style={styles.addCard} onPress={() => navigate('/jobs/create')} /></Animated.View>
     </View >
   )
 
   return (
     <>
-      {showAddClient || showAddEmployee || showAddJob ?
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={addIsActive}
-          onRequestClose={() => { setAddIsActive(!addIsActive); setShowAddClient(false); setShowAddEmployee(false); setShowAddJob(false); }}
-          presentationStyle='pageSheet'
-        >
-          {showAddClient ? <CreateUpdateClient /> : null}
-          {showAddEmployee ? <CreateUpdateEmployee /> : null}
-          {showAddJob ? <CreateUpdateJob /> : null}
-        </Modal> :
-        null
-      }
       {addIsActive ?
         overlay
         :

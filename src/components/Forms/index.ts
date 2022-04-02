@@ -1,6 +1,0 @@
-export { default as CreateUpdateClient } from './CreateUpdateClient'
-export { default as CreateUpdateEmployee } from './CreateUpdateEmployee'
-export { default as CreateUpdateJob } from './CreateUpdateJob'
-export { default as CreatePayment } from './CreatePayment'
-export { default as CreatePurchase } from './CreatePurchase'
-export { default as CreateUpdateNote } from './CreateUpdateNote'

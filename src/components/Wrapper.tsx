@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: '6%',
     marginTop: '3%',
-    height: '100%'
   }
 })
 

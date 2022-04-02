@@ -11,12 +11,10 @@
 import React, { useState } from 'react';
 import { NativeRouter, Routes, Route } from 'react-router-native';
 import { LogBox } from 'react-native';
-import { Login, Onboarding, Home, ResetPassword, Profile, Clients, Employees, Jobs, Purchases, Payments, Notes, Client, Employee, Job, Note } from './screens';
+import { Login, Onboarding, Home, ResetPassword, Profile, Clients, Employees, Jobs, Purchases, Payments, Notes, Client, Employee, Job, Note, CreateUpdateClient, CreateUpdateEmployee, CreateUpdateJob, CreatePayment, CreatePurchase, CreateUpdateNote } from './screens';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-  LogBox.ignoreAllLogs();//Ignore all log notifications
 
   return (
     <NativeRouter>
@@ -36,6 +34,16 @@ const App = () => {
         <Route path='/employees/:employeeId' element={<Employee />} />
         <Route path='/jobs/:jobId' element={<Job />} />
         <Route path='/clients/:clientId/notes/:noteId' element={<Note />} />
+        <Route path='/clients/create' element={<CreateUpdateClient />} />
+        <Route path='/employees/create' element={<CreateUpdateEmployee />} />
+        <Route path='/jobs/create' element={<CreateUpdateJob />} />
+        <Route path='/clients/:clientId/payments/create' element={<CreatePayment />} />
+        <Route path='/clients/:clientId/purchases/create' element={<CreatePurchase />} />
+        <Route path='/clients/:clientId/notes/create' element={<CreateUpdateNote />} />
+        <Route path='/clients/:clientId/edit' element={<CreateUpdateClient />} />
+        <Route path='/employees/:employeeId/edit' element={<CreateUpdateEmployee />} />
+        <Route path='/jobs/:jobId/edit' element={<CreateUpdateJob />} />
+        <Route path='/clients/:clientId/notes/:noteId/edit' element={<CreateUpdateNote />} />
       </Routes>
     </NativeRouter>
   );

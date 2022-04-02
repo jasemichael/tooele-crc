@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Text, View, Modal } from "react-native"
-import { CreateUpdateEmployee, PrimaryButton, Screen, SectionHeader } from "../components"
+import { CreateUpdateEmployee, PrimaryButton, ProfileImage, Screen, SectionHeader } from "../components"
 import SecondaryButton from "../components/Buttons/SecondaryButton"
 import PersonIcon from '../assets/icons/person.svg'
 import { useNavigate } from "react-router-native"
@@ -25,7 +25,7 @@ const Employee = () => {
         null
       }
       <View style={{ alignItems: 'center', justifyContent: 'space-evenly' }}>
-        <PersonIcon fill='grey' />
+        <ProfileImage />
         <Text style={{ textAlign: 'center' }}>{employee.firstName} {employee.lastName}</Text>
         <Text style={{ textAlign: 'center' }}>{employee.position}</Text>
       </View>

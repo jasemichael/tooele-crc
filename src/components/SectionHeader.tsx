@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    marginBottom: '3%'
+    marginBottom: '3%',
   },
   sectionTitle: {
     fontSize: screenHeight / 26,

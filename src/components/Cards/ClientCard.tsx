@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native"
 import { useNavigate } from "react-router-native"
 import PersonIcon from '../../assets/icons/person.svg'
 import { Client } from "../../types"
+import ProfileImage from "../ProfileImage"
 
 const styles = StyleSheet.create({
   clientCard: {
@@ -26,7 +27,7 @@ const ClientCard: React.FC<IProps> = ({ client }) => {
   return (
     <Pressable onPress={() => navigate(`/clients/${client._id}`)}>
       <View style={styles.clientCard}>
-        <PersonIcon fill="grey" />
+        <ProfileImage />
         <Text>{client.first_name} {client.last_name}</Text>
         <Text>${client.balance}</Text>
       </View>
