@@ -1,37 +1,25 @@
 import React, { useState } from "react"
 import { Text, View, Modal } from "react-native"
-import { CreateUpdateEmployee, PrimaryButton, ProfileImage, Screen, SectionHeader } from "../components"
+import { PrimaryButton, ProfileImage, Screen, SectionHeader } from "../components"
 import SecondaryButton from "../components/Buttons/SecondaryButton"
-import PersonIcon from '../assets/icons/person.svg'
 import { useNavigate } from "react-router-native"
 
 const Employee = () => {
   const [employee, setEmployee] = useState({ firstName: 'Jase', lastName: 'Wilson', position: 'Manager' })
-  const [showEditProfile, setShowEditProfile] = useState(false)
   const navigate = useNavigate()
   return (
     <Screen activeScreen='profile'>
       <SectionHeader back />
-      {showEditProfile ?
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={showEditProfile}
-          onRequestClose={() => { setShowEditProfile(false); }}
-          presentationStyle='pageSheet'
-        >
-          {showEditProfile ? <CreateUpdateEmployee /> : null}
-        </Modal> :
-        null
-      }
-      <View style={{ alignItems: 'center', justifyContent: 'space-evenly' }}>
-        <ProfileImage />
-        <Text style={{ textAlign: 'center' }}>{employee.firstName} {employee.lastName}</Text>
-        <Text style={{ textAlign: 'center' }}>{employee.position}</Text>
-      </View>
-      <View style={{ width: '100%', justifyContent: 'space-between', height: '15%' }}>
-        <SecondaryButton title='Edit Profile' onPress={() => setShowEditProfile(true)} />
-        <PrimaryButton title='Logout' onPress={() => navigate('/login')} />
+      <View style={{ height: '85%', justifyContent: 'space-between' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'space-evenly' }}>
+          <ProfileImage style={{ width: 225, height: 225 }} />
+          <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 28 }}>{employee.firstName} {employee.lastName}</Text>
+          <Text style={{ textAlign: 'center', fontWeight: '400', fontSize: 24 }}>{employee.position}</Text>
+        </View>
+        <View style={{ width: '100%', justifyContent: 'space-between', height: '22%' }}>
+          <SecondaryButton title='Edit Profile' onPress={() => navigate('/employees/employeeId/edit')} />
+          <PrimaryButton title='Logout' onPress={() => navigate('/login')} />
+        </View>
       </View>
     </Screen >
   )

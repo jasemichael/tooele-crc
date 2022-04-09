@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   createUpdateEmployee: {
     justifyContent: 'space-around',
     height: '120%',
-    paddingBottom: 110
+    paddingBottom: 150
   }
 })
 
@@ -26,8 +26,8 @@ const CreateUpdateEmployee = () => {
   return (
     <>
       <Screen activeScreen='home'>
+        <SectionHeader title='Add a Employee' back />
         <ScrollView contentContainerStyle={styles.createUpdateEmployee} showsVerticalScrollIndicator={false}>
-          <SectionHeader title='Add a Employee' back />
           <ProfileImage onPress={() => setCameraIsOpen(true)} image={image} style={{ alignSelf: 'center' }} />
           <LabeledInput label='First name' onChangeText={(value) => setFirstName(value)} value={firstName} />
           <LabeledInput label='Last name' onChangeText={(value) => setLastName(value)} value={lastName} />

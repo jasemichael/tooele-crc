@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native"
 import { useNavigate } from "react-router-native"
 import PersonIcon from '../../assets/icons/person.svg'
 import { Client } from "../../types"
+import ProfileImage from "../ProfileImage"
 
 const styles = StyleSheet.create({
   clientListItem: {
@@ -27,10 +28,10 @@ const ClientListItem: React.FC<IProps> = ({ client }) => {
   return (
     <Pressable onPress={() => navigate(`/clients/${client._id}`)}>
       <View style={styles.clientListItem}>
-        <PersonIcon fill='grey' style={styles.personIcon} />
-        <View>
-          <Text>{client.first_name} {client.last_name}</Text>
-          <Text>${client.balance}</Text>
+        <ProfileImage style={{ width: 75, height: 75, marginRight: 20 }} />
+        <View style={{ alignSelf: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{client.first_name} {client.last_name}</Text>
+          <Text style={{ fontWeight: '300', fontSize: 20 }}>${client.balance}</Text>
         </View>
       </View>
     </Pressable>

@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     backgroundColor: 'white',
     alignItems: 'center',
-    padding: 50,
+    padding: 20,
     marginRight: 10
   }
 })
@@ -25,10 +25,10 @@ const PurchaseCard: React.FC<IProps> = ({ purchase }) => {
   return (
     <Pressable onPress={() => navigate(``)}>
       <View style={styles.purchaseCard}>
-        <Text>{purchase.item}</Text>
-        <Text>${purchase.cost}</Text>
-        <Text>Purchased {purchase.date.toLocaleDateString()}</Text>
-        <Text>Authorized by {purchase.authorizer.first_name} {purchase.authorizer.last_name}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{purchase.item}</Text>
+        <Text style={{ fontWeight: '500', fontSize: 20 }}>${purchase.cost}</Text>
+        <Text style={{ fontSize: 20 }}>Purchased {purchase.date.toLocaleDateString()}</Text>
+        <Text style={{ fontSize: 20 }}>Authorized by {purchase.authorizer.first_name} {purchase.authorizer.last_name}</Text>
       </View>
     </Pressable>
   )

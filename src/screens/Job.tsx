@@ -11,14 +11,14 @@ const Job = () => {
       <SectionHeader back />
       <ScrollView contentContainerStyle={{ justifyContent: 'space-between' }} style={{ height: '100%' }}>
         <View style={{ alignItems: 'center' }}>
-          <Text style={{ textAlign: 'center' }}>{job.name}</Text>
-          <Text style={{ textAlign: 'center' }}>${job.price}</Text>
+          <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 28 }}>{job.name}</Text>
+          <Text style={{ textAlign: 'center', fontWeight: '400', fontSize: 24 }}>${job.price}</Text>
         </View>
-        <View style={{ width: '100%' }}>
+        <View style={{ height: '90%' }}>
           <SectionHeader title='Description' />
           <Text>{job.description}</Text>
         </View>
-        <View style={{ width: '100%', justifyContent: 'space-between', height: '23%' }}>
+        <View style={{ justifyContent: 'space-between', height: '60%' }}>
           <SectionHeader title='Manage Job' />
           <SecondaryButton title='Edit Job' onPress={() => navigate('/jobs/jobId/edit')} />
           <DangerButton title='Delete Job' onPress={() => Alert.alert(

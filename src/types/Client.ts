@@ -3,5 +3,6 @@ export default interface Client {
   first_name: string,
   last_name: string,
   balance: number,
+  phone_number: string,
   photo_url?: string,
 }

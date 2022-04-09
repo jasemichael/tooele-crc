@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     backgroundColor: 'white',
     alignItems: 'center',
-    padding: 50,
+    padding: 20,
     marginRight: 10
   }
 })
@@ -26,10 +26,10 @@ const PaymentCard: React.FC<IProps> = ({ payment }) => {
   return (
     <Pressable onPress={() => navigate(``)}>
       <View style={styles.paymentCard}>
-        <Text>{payment.job.name}</Text>
-        <Text>${payment.job.price}</Text>
-        <Text>Completed {payment.date.toLocaleDateString()}</Text>
-        <Text>Authorized by {payment.authorizer.first_name} {payment.authorizer.last_name} </Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{payment.job.name}</Text>
+        <Text style={{ fontWeight: '500', fontSize: 20 }}>${payment.job.price}</Text>
+        <Text style={{ fontSize: 20 }}>Completed {payment.date.toLocaleDateString()}</Text>
+        <Text style={{ fontSize: 20 }}>Authorized by {payment.authorizer.first_name} {payment.authorizer.last_name} </Text>
       </View>
     </Pressable>
   )

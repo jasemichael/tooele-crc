@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   createUpdateClient: {
     justifyContent: 'space-evenly',
     height: '110%',
-    paddingBottom: 90
+    paddingBottom: 130
   }
 })
 
@@ -22,8 +22,8 @@ const CreateUpdateClient = () => {
   return (
     <>
       <Screen activeScreen='home'>
+        <SectionHeader title='Add a Client' back />
         <ScrollView contentContainerStyle={styles.createUpdateClient} showsVerticalScrollIndicator={false}>
-          <SectionHeader title='Add a Client' back />
           <ProfileImage onPress={() => setIsOpen(true)} image={image} style={{ alignSelf: 'center' }} />
           <LabeledInput label='First name' onChangeText={(value) => { setFirstName(value) }} value={firstName} />
           <LabeledInput label='Last name' onChangeText={(value) => { setLastName(value) }} value={lastName} />

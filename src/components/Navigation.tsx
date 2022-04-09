@@ -5,7 +5,7 @@ import PlusIcon from '../assets/icons/plus.svg'
 import HomeIcon from '../assets/icons/home.svg'
 import ProfileIcon from '../assets/icons/profile.svg'
 import { AddCard } from './Cards'
-import { screenHeight } from '../constants'
+import { colorScheme, screenHeight } from '../constants'
 
 const styles = StyleSheet.create({
   navigation: {
@@ -122,11 +122,11 @@ const Navigation: React.FC<IProps> = ({ activeScreen }) => {
     }).start()
 
   const overlay = (
-    <View style={styles.overlay}>
+    <Pressable style={styles.overlay} onPress={() => setAddIsActive(false)} >
       <Animated.View style={{ transform: [{ translateX: clientX }, { translateY: clientY }] }}><AddCard title="Client" style={styles.addCard} onPress={() => navigate('/clients/create')} /></Animated.View>
       <Animated.View style={{ transform: [{ translateY: employeeY }] }}><AddCard title="Employee" style={styles.addCard} onPress={() => navigate('/employees/create')} /></Animated.View>
       <Animated.View style={{ transform: [{ translateX: jobX }, { translateY: jobY }] }}><AddCard title="Job" style={styles.addCard} onPress={() => navigate('/jobs/create')} /></Animated.View>
-    </View >
+    </Pressable >
   )
 
   return (
@@ -141,7 +141,7 @@ const Navigation: React.FC<IProps> = ({ activeScreen }) => {
           <Animated.View style={{
             opacity: opacity
           }}>
-            <HomeIcon fill={activeScreen === 'home' ? '#F2652B' : '#a5a5a5'} width={52} height={52} />
+            <HomeIcon fill={activeScreen === 'home' ? colorScheme.orange : '#616161'} width={52} height={52} />
           </Animated.View>
         </Link>
         <Pressable onPress={() => setAddIsActive(!addIsActive)} style={styles.plusIcon}>
@@ -162,7 +162,7 @@ const Navigation: React.FC<IProps> = ({ activeScreen }) => {
           <Animated.View style={{
             opacity: opacity
           }}>
-            <ProfileIcon fill={activeScreen === 'profile' ? '#F2652B' : '#a5a5a5'} width={40} height={40} />
+            <ProfileIcon fill={activeScreen === 'profile' ? colorScheme.orange : '#616161'} width={40} height={40} />
           </Animated.View>
         </Link>
       </View>

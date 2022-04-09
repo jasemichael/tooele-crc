@@ -27,8 +27,8 @@ const JobListItem: React.FC<IProps> = ({ job }) => {
     <Pressable onPress={() => navigate(`/jobs/${job._id}`)}>
       <View style={styles.jobListItem}>
         <View>
-          <Text>{job.name}</Text>
-          <Text>${job.price}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{job.name}</Text>
+          <Text style={{ fontWeight: '300', fontSize: 20 }}>${job.price}</Text>
         </View>
       </View>
     </Pressable>

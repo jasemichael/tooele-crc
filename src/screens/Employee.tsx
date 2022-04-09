@@ -10,13 +10,13 @@ const Employee = () => {
   return (
     <Screen activeScreen='home'>
       <SectionHeader back />
-      <ScrollView contentContainerStyle={{ justifyContent: 'space-evenly' }} style={{ height: '100%' }}>
+      <ScrollView contentContainerStyle={{ justifyContent: 'space-between', height: '90%', paddingBottom: 20 }}>
         <View style={{ alignItems: 'center' }}>
-          <ProfileImage />
-          <Text style={{ textAlign: 'center' }}>{employee.first_name} {employee.last_name}</Text>
-          <Text style={{ textAlign: 'center' }}>{employee.position}</Text>
+          <ProfileImage style={{ width: 225, height: 225 }} />
+          <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 28 }}>{employee.first_name} {employee.last_name}</Text>
+          <Text style={{ textAlign: 'center', fontWeight: '400', fontSize: 24 }}>{employee.position}</Text>
         </View>
-        <View style={{ width: '100%', justifyContent: 'space-between', height: '23%' }}>
+        <View style={{ width: '100%', justifyContent: 'space-between', height: '32%' }}>
           <SectionHeader title='Manage Employee' />
           <SecondaryButton title='Edit Employee' onPress={() => navigate('/employees/employeeId/edit')} />
           <DangerButton title='Delete Employee' onPress={() => Alert.alert(

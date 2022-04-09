@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   seeAll: {
-    fontSize: screenHeight / 60,
+    fontSize: screenHeight / 50,
     textAlign: 'right'
   },
   backButton: {

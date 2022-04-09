@@ -1,8 +1,8 @@
 import React from "react"
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import { useNavigate } from "react-router-native"
-import PersonIcon from '../../assets/icons/person.svg'
 import { Employee } from "../../types"
+import ProfileImage from "../ProfileImage"
 
 const styles = StyleSheet.create({
   employeeListItem: {
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 1,
     padding: 10,
-    marginVertical: 5
+    marginVertical: 5,
   },
   personIcon: {
     marginRight: 15
@@ -27,10 +27,10 @@ const EmployeeListItem: React.FC<IProps> = ({ employee }) => {
   return (
     <Pressable onPress={() => navigate(`/employees/${employee._id}`)}>
       <View style={styles.employeeListItem}>
-        <PersonIcon fill='grey' style={styles.personIcon} />
-        <View>
-          <Text>{employee.first_name} {employee.last_name}</Text>
-          <Text>{employee.position}</Text>
+        <ProfileImage style={{ width: 75, height: 75, marginRight: 20 }} />
+        <View style={{ justifyContent: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{employee.first_name} {employee.last_name}</Text>
+          <Text style={{ fontWeight: '300', fontSize: 20 }}>{employee.position}</Text>
         </View>
       </View>
     </Pressable>

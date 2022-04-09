@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Text, Alert, View, ScrollView } from "react-native"
 import { Carousel, Screen, SectionHeader, Button, PrimaryButton, SuccessButton, SecondaryButton, DangerButton, PaymentCard, NoteCard, PurchaseCard, ProfileImage } from "../components"
-import PersonIcon from '../assets/icons/person.svg'
-import { colorScheme, screenHeight } from "../constants"
+import { colorScheme } from "../constants"
 import { useNavigate } from "react-router-native"
 
 const Client = () => {
@@ -30,30 +29,36 @@ const Client = () => {
   return (
     <Screen activeScreen='home'>
       <SectionHeader back />
-      <ScrollView contentContainerStyle={{ paddingBottom: 150 }} style={{ height: '100%' }} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 180, justifyContent: 'space-between' }} showsVerticalScrollIndicator={false}>
         <View style={{ alignItems: 'center' }}>
-          <ProfileImage />
-          <Text style={{ textAlign: 'center' }}>{client.first_name} {client.last_name}</Text>
-          <Text style={{ textAlign: 'center' }}>${client.balance}</Text>
+          <ProfileImage style={{ width: 225, height: 225 }} />
+          <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 28 }}>{client.first_name} {client.last_name}</Text>
+          <Text style={{ textAlign: 'center', fontWeight: '400', fontSize: 24 }}>${client.balance}</Text>
         </View>
-        <SectionHeader title='Purchases' seeAll navigateTo={`/clients/${client._id}/purchases`} />
-        <Carousel>
-          {purchases.map((purchase, index) => <PurchaseCard key={index} purchase={purchase} />)}
-        </Carousel>
-        <SectionHeader title='Payments' seeAll navigateTo={`/clients/${client._id}/payments`} />
-        <Carousel>
-          {payments.map((payment, index) => <PaymentCard key={index} payment={payment} />)}
-        </Carousel>
-        <SectionHeader title='Notes' seeAll navigateTo={`/clients/${client._id}/notes`} />
-        <Carousel>
-          {notes.map((note, index) => <NoteCard key={index} note={note} />)}
-        </Carousel>
-        <View style={{ justifyContent: 'space-between' }}>
+        <View style={{ marginBottom: 20 }}>
+          <SectionHeader title='Purchases' seeAll navigateTo={`/clients/${client._id}/purchases`} />
+          <Carousel>
+            {purchases.map((purchase, index) => <PurchaseCard key={index} purchase={purchase} />)}
+          </Carousel>
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <SectionHeader title='Payments' seeAll navigateTo={`/clients/${client._id}/payments`} />
+          <Carousel>
+            {payments.map((payment, index) => <PaymentCard key={index} payment={payment} />)}
+          </Carousel>
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <SectionHeader title='Notes' seeAll navigateTo={`/clients/${client._id}/notes`} />
+          <Carousel>
+            {notes.map((note, index) => <NoteCard key={index} note={note} />)}
+          </Carousel>
+        </View>
+        <View style={{ justifyContent: 'space-between', height: '12%', marginBottom: 20 }}>
           <SectionHeader title='Manage Balance' />
           <SuccessButton onPress={() => navigate('/clients/clientId/purchases/create')} title='Make Purchase' />
           <Button title='Pay Client' onPress={() => navigate('/clients/clientId/payments/create')} color={colorScheme.orange} textColor='white' />
         </View>
-        <View style={{ justifyContent: 'space-between' }}>
+        <View style={{ justifyContent: 'space-between', height: '16%', marginBottom: 20 }}>
           <SectionHeader title='Manage Client' />
           <PrimaryButton title='Add Note' onPress={() => navigate('/clients/clientId/notes/create')} />
           <SecondaryButton title='Edit Client' onPress={() => navigate('/clients/clientId/edit')} />

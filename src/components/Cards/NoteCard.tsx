@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     backgroundColor: 'white',
     alignItems: 'center',
-    padding: 50,
+    padding: 20,
     marginRight: 10
   }
 })
@@ -26,10 +26,10 @@ const NoteCard: React.FC<IProps> = ({ note }) => {
   return (
     <Pressable onPress={() => navigate(`/clients/${note.client_id}/notes/${note._id}`)}>
       <View style={styles.noteCard}>
-        <Text>{note.title}</Text>
-        <Text>{note.description}</Text>
-        <Text>Recorded {note.date.toLocaleDateString()}</Text>
-        <Text>Recorded by {note.author.first_name} {note.author.last_name}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 20 }}>{note.title}</Text>
+        <Text style={{ fontWeight: '400', fontSize: 20 }}>{note.description}</Text>
+        <Text style={{ fontSize: 20 }}>Recorded {note.date.toLocaleDateString()}</Text>
+        <Text style={{ fontSize: 20 }}>Recorded by {note.author.first_name} {note.author.last_name}</Text>
       </View>
     </Pressable>
   )

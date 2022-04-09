@@ -11,7 +11,7 @@ const CreatePurchase = () => {
     <Screen activeScreen='home'>
       <SectionHeader title='Make a Purchase' back />
       <View style={{ height: '82%', justifyContent: 'space-between' }}>
-        <View style={{ height: '35%', justifyContent: 'space-between' }}>
+        <View style={{ height: '32%', justifyContent: 'space-between' }}>
           <LabeledInput label='Item to purchase' onChangeText={(value) => setItem(value)} value={item} icon={<ShoppingIcon fill='black' width={24} height={24} />} />
           <LabeledInput label='Price' onChangeText={(value) => setPrice(value)} value={price} icon={<MoneyIcon fill='black' width={24} height={24} />} keyboardType='number-pad' />
         </View>

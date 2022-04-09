@@ -2,6 +2,7 @@ import React from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 import { useNavigate } from "react-router-native"
 import PersonIcon from '../../assets/icons/person.svg'
+import { colorScheme } from "../../constants"
 import { Client } from "../../types"
 import ProfileImage from "../ProfileImage"
 
@@ -13,8 +14,9 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     backgroundColor: 'white',
     alignItems: 'center',
-    padding: 50,
-    marginRight: 10
+    paddingHorizontal: 40,
+    paddingVertical: 20,
+    marginRight: 10,
   }
 })
 
@@ -28,8 +30,8 @@ const ClientCard: React.FC<IProps> = ({ client }) => {
     <Pressable onPress={() => navigate(`/clients/${client._id}`)}>
       <View style={styles.clientCard}>
         <ProfileImage />
-        <Text>{client.first_name} {client.last_name}</Text>
-        <Text>${client.balance}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 22 }}>{client.first_name} {client.last_name}</Text>
+        <Text style={{ fontWeight: '400', fontSize: 20 }}>${client.balance}</Text>
       </View>
     </Pressable>
   )
